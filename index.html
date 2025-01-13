@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Info Form</title>
+    <style>
+        body {
+            background-color: #d3f8d3;
+            font-family: Arial, sans-serif;
+            color: black;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            display: block;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #4CAF50; 
+            color: white;
+            width: 50%;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            margin-top: 10px;
+            font-weight: bold; 
+        }
+
+        input, select, textarea {
+            padding: 8px;
+            margin: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px; 
+        }
+
+        input[type="submit"] {
+            width: 40%;
+            background-color: #FF5722; 
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e64a19; 
+        }
+
+        a {
+            color: #2f4f4f;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .signature-box {
+            margin-top: 20px;
+            width: 80%;
+            padding: 10px;
+            border: 2px solid black;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .email-section {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Homepage</h1>
+
+    <div class="form-container">
+        <form id="infoForm" action="submit_form" method="POST" onsubmit="showThankYouMessage(event)">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" pattern="[A-Za-z]+" title="Only letters are allowed" oninput="validateName()" required>
+            <br>
+
+            <label for="initial">M. Initial:</label>
+            <input type="text" id="initial" name="initial" pattern="[A-Za-z]" title="Only one letter is allowed" oninput="validateName()" required>
+            <br>
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" pattern="[A-Za-z]+" title="Only letters are allowed" oninput="validateName()" required>
+            <br>
+
+            <label for="matriculation">Matriculation:</label>
+            <input type="text" id="matriculation" name="matriculation" oninput="validateMatriculation()" title="Only numbers are allowed" required>
+            <br>
+
+            <label for="country">I am from:</label>
+            <select id="country" name="country" required>
+                <option value="Germany">Germany</option>
+                <option value="India">India</option>
+                <option value="Turkey">Turkey</option>
+            </select>
+            <br>
+
+            <label for="startDate">Started in:</label>
+            <input type="date" id="startDate" name="startDate" required>
+            <br>
+
+            <label for="program">Graduate Program:</label>
+            <select id="program" name="program" required>
+                <option value="CS">Computer Science</option>
+                <option value="IT">Information Technology</option>
+                <option value="Media">Media</option>
+            </select>
+            <br>
+
+           <label for="Semester">Semester:</label>
+            <select id="Semester" name="Semester" required>
+                <option value="1">Semester 1</option>
+                <option value="2">Semester 2</option>
+                <option value="3">Semester 3</option>
+            </select>
+            <br>
+
+            <label>Graduate Program Source:</label>
+            <input type="radio" name="source" value="Add" required> Add
+            <input type="radio" name="source" value="Agency"> Agency
+            <input type="radio" name="source" value="Other"> Other
+            <input type="radio" name="source" value="Media"> Media
+            <br>
+
+            <label>When I finish my study, I will:</label>
+            <input type="checkbox" name="plans" value="Return to my country"> Return to my country
+            <input type="checkbox" name="plans" value="Find a job in Europe"> Find a job in Europe
+            <input type="checkbox" name="plans" value="Do practical training"> Do practical training
+            <br>
+
+            <label for="feedback">Feedback for the course:</label>
+            <textarea id="feedback" name="feedback" rows="4" cols="50" required>This course helped me out to understand the programming language like C and I also learned frontend development skills. After this course, I will understand more about websites while doing web application assessments.</textarea>
+            <br>
+
+            <div class="sdlc-info">
+                <h3>Q) I will write a paragraph for each methodology of <a href="https://en.wikipedia.org/wiki/Systems_development_life_cycle" target="_blank">SDLC</a>. There are many of them, but I will suggest a few. My suggestions and reasons are as follows:</h3>
+                
+                <h4>A) Waterfall Methodology:</h4>
+                <p> It's best for projects with well-defined requirements and minimal changes.</p>
+
+                <h4>B) Agile Methodology:</h4>
+                <p>Agile focuses on iterative development, flexibility, and customer collaboration.</p>
+
+                <h4>C) V-Model Methodology:</h4>
+                <p>It emphasizes early testing and validation, ensuring quality from the start.</p>
+
+                <h3>Q) Among so many SDLC methodologies, the ones that are in the Agile classification are better. Among Agile SDLC Methods, I have also a few suggestions.</h3>
+
+                <h4>A) Scrum:</h4>
+                <p>Scrum is an Agile framework that divides the development process into small, iterative cycles known as sprints.</p>
+
+                <h4>B) Kanban:</h4>
+                <p>It helps to improve efficiency by limiting work-in-progress and ensuring tasks are completed before starting new ones.</p>
+
+                <h4>C) XP (Extreme Programming):</h4>
+                <p>XP focuses on improving software quality through frequent releases in short development cycles.</p>
+            </div>
+
+            <div class="course-info">
+                <h3>Q) In this software development and application course of <a href="https://www.srh.de/en" target="_blank">SRH</a>, we learn the following:</h3>
+                
+                <h4>a) C Programming:</h4>
+                <p>C programming is a powerful general-purpose language that is used for system-level programming and embedded systems.</p>
+
+                <h4>b) Backend Programming:</h4>
+                <p>It is responsible for the management of databases, server logic, and application functionality.</p>
+
+                <h4>c) Frontend Programming:</h4>
+                <p>Frontend programming focuses on creating the user interface and user experience of a website or web application.</p>
+
+                <h4>d) SDLC (Software Development Life Cycle):</h4>
+                <p>The Software Development Life Cycle (SDLC) is a structured approach to software development that ensures high-quality software is delivered efficiently and on time.</p>
+            </div>
+
+            <div class="css-info">
+                <h3>Q) What are the different ways to include <a href="https://www.w3schools.com/css/" target="_blank">CSS</a> in a webpage and how does each method work?</h3>
+                
+                <h4>A) Inline CSS:</h4>
+                <p>Inline CSS applies styles directly to HTML elements using the style attribute. It's used for quick styling of a single element.</p>
+                <h4>B) Internal CSS:</h4>
+                <p>It allows styling of multiple elements on a single page.</p>
+
+                <h4>C) External CSS:</h4>
+                <p>External CSS is written in a separate .css file. This is the best method for large websites, as it allows the same style sheet to be used across multiple pages:</p>
+            </div>
+
+            <div class="css-info">
+                <h3>Q) The reasons CSS is used in a webpage are:</h3>
+                
+                <h4>A) Separation of Concerns:</h4>
+                <p>CSS allows the separation of content (HTML) from design (CSS). This makes the webpage more flexible, easier to maintain.</p>
+
+                <h4>B) Improved Website Performance:</h4>
+                <p>By using external CSS files, browsers cache the styles, which improves the load time and reduces the overall size of the webpage.</p>
+
+                <h4>C) Easier to Apply Consistent Styles:</h4>
+                <p>CSS provides a way to apply consistent styles across a webpage or multiple pages.</p>
+            </div>
+
+            <div class="javascript-info">
+                <h3>Q) We also use <a href="https://www.w3schools.com/js/" target="_blank">JavaScript</a> in webpage development. The main reasons are as follows:</h3>
+                
+                <h4>A) Interactivity:</h4>
+                <p>JavaScript allows developers to create dynamic and interactive websites. For example, interactive forms, buttons, and live updates can be achieved with JavaScript.</p>
+
+                <h4>B) Enhances User Experience:</h4>
+                <p>With JavaScript, you can create animations, drag-and-drop features, and real-time updates that significantly improve the user experience.</p>
+
+                <h4>C) Asynchronous Loading:</h4>
+                <p>JavaScript enables asynchronous programming through AJAX (Asynchronous JavaScript and XML), which allows data to be loaded dynamically without reloading the page. This improves website performance and user experience.</p>
+
+                <h4>D) Cross-Platform Compatibility:</h4>
+                <p>JavaScript works across various platforms and browsers, ensuring that web applications function consistently across different devices and browsers.</p>
+
+                <h4>E) Server-Side Development:</h4>
+                <p>JavaScript is not limited to the browser. With the help of frameworks like Node.js, JavaScript can also be used for server-side programming, allowing for full-stack development.</p>
+            </div>
+
+            <div class="signature-box">
+                <p><strong>I've done this project myself and accept the consequences if found other ways. You can reach me at:</strong></p>
+                <div class="email-section">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        // Function to prevent numbers in Name, Initial, and Last Name fields
+        function validateName() {
+            let nameField = document.getElementById('name');
+            let initialField = document.getElementById('initial');
+            let lastNameField = document.getElementById('lastName');
+
+            // Remove numbers from name, initial, and last name fields
+            nameField.value = nameField.value.replace(/[^A-Za-z]/g, '');
+            initialField.value = initialField.value.replace(/[^A-Za-z]/g, '');
+            lastNameField.value = lastNameField.value.replace(/[^A-Za-z]/g, '');
+        }
+
+        // Function to only allow numbers in Matriculation field
+        function validateMatriculation() {
+            let matriculationField = document.getElementById('matriculation');
+
+            // Allow only numbers in Matriculation field
+            matriculationField.value = matriculationField.value.replace(/[^0-9]/g, '');
+        }
+
+        // Function to show pop-up message
+        function showThankYouMessage(event) {
+            event.preventDefault(); // Prevent form submission
+            alert('Thanks for submitting the Form');
+        }
+    </script>
+</body>
+</html>
